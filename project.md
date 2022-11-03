@@ -16,10 +16,10 @@ Specyfikacja wymagań funkcjonalnych w ramach informatyzacji procesu sprzedaży 
 
 **Scenariusz główny:**
 1. [Sprzedający](#ac1) wystawia produkt na aukcję. ([UC1](#uc1))
-2. [Kupujący](#ac2) oferuje kwotę za produkt wyższą od aktualnie najwyższej oferty. ([BR1](#br1))
-3. [Kupujący](#ac2) wygrywa aukcję ([BR2](#br2))
-4. [Kupujący](#ac2) przekazuje należność Sprzedającemu.
-5. [Sprzedający](#ac1) przekazuje produkt Kupującemu.
+2. [Kupujący](#ac2) oferuje kwotę za produkt wyższą od aktualnie najwyższej oferty. ([BR1](#br1)) ([UC2](#uc2))
+3. [Kupujący](#ac2) wygrywa aukcję 
+4. [Kupujący](#ac2) przekazuje należność Sprzedającemu. ([UC3](#uc3))
+5. [Sprzedający](#ac1) przekazuje produkt Kupującemu. 
 
 **Scenariusze alternatywne:** 
 
@@ -50,10 +50,11 @@ Osoba chcąca zakupić produkt na aukcji.
 
 [Sprzedający](#ac1):
 * [UC1](#uc1): Wystawienie produktu na aukcję
-* ...
+* [AC1](#uc2): Przekazanie produktu na aukcję
 
 [Kupujący](#ac2)
-* ...
+* [BR1](#br1): zaoferowanie kwoty wyższej od aktualnie najwyższej oferty
+* [UC3](#uc3): Przekazanie należności sprzedającemu
 
 ---
 <a id="uc1"></a>
@@ -77,17 +78,37 @@ Osoba chcąca zakupić produkt na aukcji.
 ---
 
 <a id="uc2"></a>
-### UC2: ...
+### UC2: Zaoferowanie kwoty wyższej od aktualnie najwyższej oferty
 
-**Aktorzy:** [Sprzedający](#ac1), [Kupujący](#ac2), ...
+**Aktorzy:** [Kupujący](#ac2)
 
 **Scenariusz główny:**
-1. ...
+1. [Kupujący](#ac2) proponuje kwotę
+2. System sprawdza że kwota jest większa od aktualnie najwyższej
+3. System zatwierdza zaoferowaną ofertę
 
 **Scenariusze alternatywne:** 
 
-1.A. ...
-* 4.A.1. ...
+2.A. Podana kwota nie jest najwyższa
+* 2.A.1. System informuje o za niskiej kwocie
+* 2.A.2. Przejdź do kroku 1.
+
+---
+<a id="uc3"></a>
+### UC3: Przekazanie płatności
+
+**Aktorzy:** [Sprzedający](#ac1), [Kupujący](#ac2)
+
+**Scenariusz główny:**
+1. [Kupujący](#ac2) Przekazuje kwotę systemowi
+2. System sprawdza poprawność kwoty
+3. Kwota zostaje przekazana [Sprzedającemu](#ac1)
+
+**Scenariusze alternatywne:** 
+
+2.A. Kwota jest niepoprawna
+* 2.A.1. System reguluje różnicę z [Kupującym](#ac2)
+* 2.A.2. Przejdź do kroku 3
 
 ---
 
@@ -120,6 +141,6 @@ Aukcję wygrywa ten z [Kupujący](#ac2)ch, który w momencie jej zakończenia (u
 | Przypadek użycia                                  | Aukcja | Produkt | ... |
 | ------------------------------------------------- | ------ | ------- | --- |
 | UC1: Wystawienia produktu na aukcję               |    C   |    C    | ... |
-| ???                                               |  ...   |  ...    | ... |
+| UC2: Zaproponowanie wyższej kwoty                 |  ...   |  ...    | ... |
 
 
